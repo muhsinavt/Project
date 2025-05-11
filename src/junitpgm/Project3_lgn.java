@@ -6,6 +6,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -60,42 +61,44 @@ public class Project3_lgn {
 	    
 	   WebElement women = driver.findElement(By.xpath("//a[@id='ui-id-4']"));
 	   women.click();
-	   //WebElement tops = driver.findElement(By.xpath("//*[@id=\"narrow-by-list2\"]/dd/ol/li[1]"));
-	   //tops.click();
-	  // WebElement catgry = driver.findElement(By.xpath("//*[@id=\"narrow-by-list\"]/div[1]/div[1]"));
-	  // catgry.click();
-	   //WebElement jackets = driver.findElement(By.xpath("//a[@id='ui-id-11']"));
-       //jackets.click();
-       //WebElement cart = driver.findElement(By.xpath("//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[3]/div[1]/div[1]/form/button/span"));
-      // cart.click();
+	   WebElement tops = driver.findElement(By.xpath("//*[@id=\"narrow-by-list2\"]/dd/ol/li[1]"));
+	   tops.click();
+	  WebElement catgry = driver.findElement(By.xpath("//*[@id=\"narrow-by-list\"]/div[1]/div[1]"));
+	   catgry.click();
+	    catgry = driver.findElement(By.xpath("//a[@id='ui-id-11']"));
+        catgry.click();
+       WebElement cart = driver.findElement(By.xpath("//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[3]/div[1]/div[1]/form/button/span"));
+      cart.click();
 	}
 	@Test
     public void test2() { // link count
-	//	List<WebElement> li= driver.findElements(By.tagName("a"));
-		//System.out.println("NO OF LINKS = " +li.size());
-	//	for(WebElement e:li) {
-		//String lin =e.getDomAttribute("href");
-		//String linktext =e.getText();
-	//	System.out.println(lin+"---"+linktext);
+		List<WebElement> li= driver.findElements(By.tagName("a"));
+		System.out.println("NO OF LINKS = " +li.size());
+	for(WebElement e:li) {
+		String lin =e.getDomAttribute("href");
+		String linktext =e.getText();
+		System.out.println(lin+"---"+linktext);
 		}
-	//String url= "https://magento.softwaretestingboard.com";
+	
+	}
+	String url= "https://magento.softwaretestingboard.com";
 	@Test
 	public void linktest() throws Exception {
-	//	URI ob = new URI(url);
-	//	URL link = ob.toURL();
-	//	HttpURLConnection con =(HttpURLConnection)link.openConnection();
+	    URI ob = new URI(url);
+	    URL link = ob.toURL();
+		HttpURLConnection con =(HttpURLConnection)link.openConnection();
 		
-	//	int respcode = con.getResponseCode();
+	   int respcode = con.getResponseCode();
 		
-	//	System.out.println("Response code :" +respcode);
-	//	if(responsecode==200)
-	//	{
-	//		System.out.println("url is valid");
-	//	}
-	//	else
-	//	{
-	//		System.out.println("url is not valid");
-	
+     	System.out.println("Response code :" +respcode);
+		if(respcode==200)
+		{
+			System.out.println("url is valid");
+		}
+	    else
+		{
+		System.out.println("url is not valid");
+		}
 	
 	}
 	@Test
@@ -121,6 +124,10 @@ public void Scrnshot() throws Exception {
     File s1 = searchbar.getScreenshotAs(OutputType.FILE);
 	FileHandler.copy(s1,new File("./screenshot/searchbar_screenshot.png"));
     System.out.println("webelement Screenshot saved succesfully");
+}
+@After
+public void teardown() {
+	driver.quit();
 }
 }
 
