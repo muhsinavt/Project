@@ -32,7 +32,7 @@ public class Project1 {
 		
 		@After
 		public void teardown() {
-			//driver.quit();
+			driver.quit();
 		}
 	
 	}
